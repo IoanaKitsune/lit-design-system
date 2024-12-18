@@ -1,6 +1,6 @@
 import {css, html, LitElement, unsafeCSS} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
-import { designTokens } from '../design-tokens/design-tokens';
+import { designTokens } from '../design-system/design-tokens';
 
 
 @customElement('lit-button')
@@ -34,7 +34,6 @@ export class Button extends LitElement {
 
 
     render() {
-        const {color} = this;
         return html`
             <button>
                 ${this.label}

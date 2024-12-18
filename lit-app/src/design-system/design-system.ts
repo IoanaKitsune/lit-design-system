@@ -1,5 +1,6 @@
 import { NamedTheme, Theme, ThemeMode, applyTheme } from './theme/apply-theme.ts';
 import { LitElement } from 'lit';
+import {DesignToken} from "./design-token.ts";
 
 export interface DesignSystemConfig {
     readonly assetsUrl: string;
@@ -27,5 +28,7 @@ export function provideNovaDesignSystem(c?: Partial<DesignSystemConfig>): void {
 
     // Apply the selected theme and mode
     applyTheme(config.theme, config.themeMode, config.htmlFontSize);
-
+    // DesignToken.registerDefaultStyleTarget(
+    //     config.root instanceof Document ? config.root : config.root.style
+    // );
 }

@@ -1,5 +1,6 @@
 import {ColorPalette} from "./color-palette.ts";
 import {normalizeTheme} from "./theme-utils.ts";
+import {designTokens} from "../design-tokens.ts";
 
 export type NamedTheme = 'nova' | 'royal-punk';
 
@@ -35,11 +36,16 @@ function applyBaseStyles(theme: Theme, mode: ThemeMode, htmlFontSize: number): v
 }
 
 function applyThemeColorPalette(colors: ColorPalette): void {
-    document.documentElement.style.setProperty('--primary-color', colors.primary);
-    document.documentElement.style.setProperty('--secondary-color', colors.secondary);
-    document.documentElement.style.setProperty('--neutral-color', colors.neutral);
-    document.documentElement.style.setProperty('--black-color', colors.black);
-    document.documentElement.style.setProperty('--white-color', colors.white);
-    document.documentElement.style.setProperty('--overlay-color', colors.overlay);
+    designTokens.colors.primary.setValue(colors.primary);
+    designTokens.colors.secondary.setValue(colors.secondary)
+    designTokens.colors.neutral.setValue(colors.neutral);
+    designTokens.colors.warning.setValue(colors.warning)
+    designTokens.colors.error.setValue(colors.error);
+    designTokens.colors.success.setValue(colors.success)
+    designTokens.colors.black.setValue(colors.black);
+    designTokens.colors.white.setValue(colors.white)
+    designTokens.colors.overlay.setValue(colors.overlay);
+    designTokens.colors.ai.purple.setValue(colors.ai.purple);
+    designTokens.colors.ai.teal.setValue(colors.ai.teal);
 }
 

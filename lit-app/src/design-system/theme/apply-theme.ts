@@ -8,6 +8,7 @@ import {Shadows} from "./tokens/shadows.ts";
 import {BorderRadii, BorderWidths} from "./tokens/border.ts";
 import {Spacings} from "./tokens/spacings.ts";
 import {IconSizes} from "./tokens/icon-sizes.ts";
+import {Transitions} from "./tokens/transitions.ts";
 
 export type NamedTheme = 'nova' | 'royal-punk';
 
@@ -31,6 +32,7 @@ export interface Theme {
     readonly borderRadius: BorderRadii;
     readonly iconSize: IconSizes;
     readonly spacings: Spacings;
+    readonly transition: Transitions;
 }
 
 
@@ -72,6 +74,9 @@ export function applyTheme(
     );
 
     applySizingTokens(designTokens.spacing, normalizedTheme.spacings, htmlFontSize);
+
+    applyThemeToken(designTokens.transition.fast, normalizedTheme.transition.fast);
+
 }
 
 

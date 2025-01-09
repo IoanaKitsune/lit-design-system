@@ -215,6 +215,9 @@ const theme: Theme = {
         md: 1.5,
     },
     spacings: spacingBuilder(),
+    transition: {
+        fast: '0.2s ease-in-out',
+    },
 };
 
 export default theme;

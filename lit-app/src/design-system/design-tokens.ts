@@ -212,6 +212,9 @@ export const designTokens = {
         sm: new DesignToken('icon-size-sm', '1.25rem'),
         md: new DesignToken('icon-size-md', '1.5rem'),
     },
+    transition: {
+        fast: new DesignToken('transition-fast', '0.2s ease-in-out'),
+    },
 };
 
 

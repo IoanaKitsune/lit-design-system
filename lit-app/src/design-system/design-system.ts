@@ -38,9 +38,6 @@ export function provideNovaDesignSystem(c?: Partial<DesignSystemConfig>): void {
     };
 
     applyTheme(config.theme, config.themeMode, config.htmlFontSize);
-    // DesignToken.registerDefaultStyleTarget(
-    //     config.root instanceof Document ? config.root : config.root.style
-    // );
     registerComponents(config);
 
     designSystemProvided = true;

@@ -1,6 +1,37 @@
 import {Theme} from "../apply-theme.ts";
-import {invertColorPalette} from "../theme-utils.ts";
 import {ColorPalette} from "../tokens/color-palette.ts";
+import {shadows, invertColorPalette} from "../tokens/token-utils.ts";
+import {spacings, Spacings} from "../tokens/spacings.ts";
+
+const shadowLightColor = 'rgba(20, 20, 20, 0.1)';
+const shadowDarkColor = 'rgba(20, 20, 20, 0.4)';
+
+const shadowBuilder = {
+    light: shadows({
+        xs: [[0, 0.063, 0.125, 0, shadowLightColor]],
+        sm: [[0, 0.125, 0.25, 0, shadowLightColor]],
+        md: [[0, 0.25, 0.5, 0, shadowLightColor]],
+        lg: [[0, 0.5, 1, 0, shadowLightColor]],
+        xl: [[0, 1, 2, 0, shadowLightColor]],
+    }),
+    dark: shadows({
+        xs: [[0, 0.063, 0.125, 0, shadowDarkColor]],
+        sm: [[0, 0.125, 0.25, 0, shadowDarkColor]],
+        md: [[0, 0.25, 0.5, 0, shadowDarkColor]],
+        lg: [[0, 0.5, 1, 0, shadowDarkColor]],
+        xl: [[0, 1, 2, 0, shadowDarkColor]],
+    }),
+};
+
+const baseSize = 0.25;
+
+const spacingBuilder = () => {
+    const result = {} as Spacings;
+    for (const key of spacings) {
+        result[key as unknown as keyof Spacings] = Number(key) * baseSize;
+    }
+    return result;
+};
 
 const lightColors: ColorPalette = {
     primary: {
@@ -157,6 +188,33 @@ const theme: Theme = {
         semibold: '600',
         bold: '700',
     },
+    shadow: {
+        light: {
+            box: shadowBuilder.light.box(),
+            drop: shadowBuilder.light.drop(),
+        },
+        dark: {
+            box: shadowBuilder.dark.box(),
+            drop: shadowBuilder.dark.drop(),
+        },
+    },
+    borderWidth: {
+        xs: 0.063,
+        sm: 0.125,
+    },
+    borderRadius: {
+        xs: 0.5,
+        sm: 0.75,
+        md: 1,
+        lg: 1.25,
+        xl: 1.625,
+    },
+    iconSize: {
+        xs: 1,
+        sm: 1.25,
+        md: 1.5,
+    },
+    spacings: spacingBuilder(),
 };
 
 export default theme;

@@ -4,6 +4,10 @@ import {designTokens} from "../design-tokens.ts";
 import {DesignToken} from "../design-token.ts";
 import {colorRange, ColorRange} from "./tokens/color-range.ts";
 import {FontFamilies, FontSizeRelevant, FontSizes, FontWeights, LineHeights} from "./tokens/font.ts";
+import {Shadows} from "./tokens/shadows.ts";
+import {BorderRadii, BorderWidths} from "./tokens/border.ts";
+import {Spacings} from "./tokens/spacings.ts";
+import {IconSizes} from "./tokens/icon-sizes.ts";
 
 export type NamedTheme = 'nova' | 'royal-punk';
 
@@ -17,6 +21,16 @@ export interface Theme {
     readonly fontSize: FontSizes;
     readonly lineHeight: LineHeights;
     readonly fontWeight: FontWeights;
+    readonly shadow: {
+        readonly [mode in ThemeMode]: {
+            readonly box: Shadows;
+            readonly drop: Shadows;
+        };
+    };
+    readonly borderWidth: BorderWidths;
+    readonly borderRadius: BorderRadii;
+    readonly iconSize: IconSizes;
+    readonly spacings: Spacings;
 }
 
 
@@ -28,11 +42,36 @@ export function applyTheme(
     const normalizedTheme = normalizeTheme(theme);  // Normalize the theme if needed
 
     applyThemeColorPalette(designTokens.colors, normalizedTheme.color[mode]);
+
     applyThemeToken(designTokens.fontFamily.sans, normalizedTheme.fontFamily.sans);
     applyThemeToken(designTokens.fontFamily.mono, normalizedTheme.fontFamily.mono);
+
     applyFontSizeTokens(designTokens.fontSize, normalizedTheme.fontSize, htmlFontSize);
     applyFontTokens(designTokens.lineHeight, normalizedTheme.lineHeight);
     applyFontTokens(designTokens.fontWeight, normalizedTheme.fontWeight);
+
+    applyThemeShadows(designTokens.shadow.box, normalizedTheme.shadow[mode].box);
+    applyThemeShadows(designTokens.shadow.drop, normalizedTheme.shadow[mode].drop);
+
+    applyThemeBorders(normalizedTheme, htmlFontSize);
+
+    applyThemeSizingToken(
+        designTokens.iconSize.xs,
+        normalizedTheme.iconSize.xs,
+        htmlFontSize
+    );
+    applyThemeSizingToken(
+        designTokens.iconSize.sm,
+        normalizedTheme.iconSize.sm,
+        htmlFontSize
+    );
+    applyThemeSizingToken(
+        designTokens.iconSize.md,
+        normalizedTheme.iconSize.md,
+        htmlFontSize
+    );
+
+    applySizingTokens(designTokens.spacing, normalizedTheme.spacings, htmlFontSize);
 }
 
 
@@ -118,6 +157,70 @@ function applyFontTokens(
     applyThemeToken(tokens['h1-2xl'], theme['h1-2xl']);
     applyThemeToken(tokens['h1-3xl'], theme['h1-3xl']);
     applyThemeToken(tokens['code'], theme['code']);
+}
+
+function applyThemeShadows(
+    tokens: Shadows<DesignToken>,
+    shadows: Shadows
+): void {
+    applyThemeToken(tokens.xs, shadows.xs);
+    applyThemeToken(tokens.sm, shadows.sm);
+    applyThemeToken(tokens.md, shadows.md);
+    applyThemeToken(tokens.lg, shadows.lg);
+    applyThemeToken(tokens.xl, shadows.xl);
+}
+
+function applyThemeBorders(theme: Theme, htmlFontSize: number) {
+    applyThemeSizingToken(
+        designTokens.borderWidth.xs,
+        theme.borderWidth.xs,
+        htmlFontSize
+    );
+    applyThemeSizingToken(
+        designTokens.borderWidth.sm,
+        theme.borderWidth.sm,
+        htmlFontSize
+    );
+    /* Border Radii */
+    applyThemeSizingToken(
+        designTokens.borderRadius.xs,
+        theme.borderRadius.xs,
+        htmlFontSize
+    );
+    applyThemeSizingToken(
+        designTokens.borderRadius.sm,
+        theme.borderRadius.sm,
+        htmlFontSize
+    );
+    applyThemeSizingToken(
+        designTokens.borderRadius.md,
+        theme.borderRadius.md,
+        htmlFontSize
+    );
+    applyThemeSizingToken(
+        designTokens.borderRadius.lg,
+        theme.borderRadius.lg,
+        htmlFontSize
+    );
+    applyThemeSizingToken(
+        designTokens.borderRadius.xl,
+        theme.borderRadius.xl,
+        htmlFontSize
+    );
+}
+
+function applySizingTokens(
+    tokens: Spacings<DesignToken>,
+    theme: Spacings,
+    htmlFontSize: number
+) {
+    for (const key in designTokens.spacing) {
+        applyThemeSizingToken(
+            tokens[key as unknown as keyof Spacings],
+            theme[key as unknown as keyof Spacings],
+            htmlFontSize
+        );
+    }
 }
 
 

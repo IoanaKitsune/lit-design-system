@@ -1,6 +1,6 @@
 import {Theme} from "../apply-theme.ts";
-import {invertColorPalette} from "../theme-utils.ts";
 import {ColorPalette} from "../tokens/color-palette.ts";
+import {invertColorPalette} from "../tokens/token-utils.ts";
 
 const lightColors: ColorPalette = {
     primary: {

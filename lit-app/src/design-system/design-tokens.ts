@@ -97,6 +97,55 @@ export const designTokens = {
             teal: new DesignToken('ai-teal', '#03dac6'),
         },
     },
+    fontFamily: {
+        sans: new DesignToken('font-family-sans', '"Open Sans", sans-serif'),
+        mono: new DesignToken('font-family-mono', '"Fira Code", monospace')
+    },
+    fontSize: {
+        label: new DesignToken('font-size-label', '12px'),
+        p: new DesignToken('font-size-p', '14px'),
+        h6: new DesignToken('font-size-h6', '16px'),
+        h5: new DesignToken('font-size-h5', '18px'),
+        h4: new DesignToken('font-size-h4', '20px'),
+        h3: new DesignToken('font-size-h3', '24px'),
+        h2: new DesignToken('font-size-h2', '28px'),
+        h1: new DesignToken('font-size-h1', '32px'),
+        'h1-xl': new DesignToken('font-size-h1-xl', '36px'),
+        'h1-2xl': new DesignToken('font-size-h1-2xl', '40px'),
+        'h1-3xl': new DesignToken('font-size-h1-3xl', '44px'),
+        code: new DesignToken('font-size-code', '14px')
+    },
+    lineHeight: {
+        label: new DesignToken('line-height-label', '1.2'),
+        p: new DesignToken('line-height-p', '1.5'),
+        h6: new DesignToken('line-height-h6', '1.5'),
+        h5: new DesignToken('line-height-h5', '1.6'),
+        h4: new DesignToken('line-height-h4', '1.6'),
+        h3: new DesignToken('line-height-h3', '1.6'),
+        h2: new DesignToken('line-height-h2', '1.6'),
+        h1: new DesignToken('line-height-h1', '1.8'),
+        'h1-xl': new DesignToken('line-height-h1-xl', '1.8'),
+        'h1-2xl': new DesignToken('line-height-h1-2xl', '1.8'),
+        'h1-3xl': new DesignToken('line-height-h1-3xl', '1.8'),
+        code: new DesignToken('line-height-code', '1.4')
+    },
+    fontWeight: {
+        regular: new DesignToken('font-weight-regular', '400'),
+        semibold: new DesignToken('font-weight-semibold', '600'),
+        bold: new DesignToken('font-weight-bold', '700'),
+        label: new DesignToken('font-weight-label', '300'),
+        p: new DesignToken('font-weight-p', '400'),
+        h6: new DesignToken('font-weight-h6', '500'),
+        h5: new DesignToken('font-weight-h5', '600'),
+        h4: new DesignToken('font-weight-h4', '700'),
+        h3: new DesignToken('font-weight-h3', '800'),
+        h2: new DesignToken('font-weight-h2', '900'),
+        h1: new DesignToken('font-weight-h1', '900'),
+        'h1-xl': new DesignToken('font-weight-h1-xl', '900'),
+        'h1-2xl': new DesignToken('font-weight-h1-2xl', '900'),
+        'h1-3xl': new DesignToken('font-weight-h1-3xl', '900'),
+        code: new DesignToken('font-weight-code', '400')
+    }
 };
 
 

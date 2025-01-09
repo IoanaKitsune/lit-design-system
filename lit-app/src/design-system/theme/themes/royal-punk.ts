@@ -1,6 +1,6 @@
 import {Theme} from "../apply-theme.ts";
 import {invertColorPalette} from "../theme-utils.ts";
-import {ColorPalette} from "../color-palette.ts";
+import {ColorPalette} from "../tokens/color-palette.ts";
 
 const lightColors: ColorPalette = {
     primary: {
@@ -106,7 +106,57 @@ const theme: Theme = {
                 teal: '#0DF1FF',
             },
         },
-    }
+    },
+    fontFamily: {
+        sans: 'Roboto, sans-serif',
+        mono: 'Courier New, monospace'
+    },
+    fontSize: {
+        label: 0.75,
+        p: 0.875,
+        h6: 1,
+        h5: 1.125,
+        h4: 1.25,
+        h3: 1.5,
+        h2: 1.875,
+        h1: 2.25,
+        'h1-xl': 3,
+        'h1-2xl': 3.75,
+        'h1-3xl': 4.5,
+        code: 0.875,
+    },
+    lineHeight: {
+        label: '133.333%',
+        p: '171.429%',
+        h6: '125%',
+        h5: '133.333%',
+        h4: '120%',
+        h3: '133.333%',
+        h2: '120%',
+        h1: '122.222%',
+        'h1-xl': '125%',
+        'h1-2xl': '120%',
+        'h1-3xl': '122.222%',
+        code: '171.429%',
+    },
+    //TODO reference base font-weights (display-xs -> semibold, etc.)
+    fontWeight: {
+        label: '400',
+        p: '400',
+        h6: '600',
+        h5: '600',
+        h4: '600',
+        h3: '600',
+        h2: '600',
+        h1: '600',
+        'h1-xl': '600',
+        'h1-2xl': '600',
+        'h1-3xl': '600',
+        code: '400',
+        regular: '400',
+        semibold: '600',
+        bold: '700',
+    },
 };
 
 export default theme;

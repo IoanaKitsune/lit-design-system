@@ -1,6 +1,6 @@
 import {NamedTheme, Theme} from "./apply-theme.ts";
-import {colorRange, ColorRange} from "./color-range.ts";
-import {ColorPalette} from "./color-palette.ts";
+import {colorRange, ColorRange} from "./tokens/color-range.ts";
+import {ColorPalette} from "./tokens/color-palette.ts";
 import novaTheme from "./themes/nova.ts";
 import royalPunkTheme from "./themes/royal-punk.ts";
 

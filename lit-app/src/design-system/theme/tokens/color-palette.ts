@@ -1,4 +1,4 @@
-import { ColorRange } from './color-range';
+import { ColorRange } from './color-range.ts';
 
 export interface ColorPalette<T = string> {
     readonly primary: ColorRange<T>;

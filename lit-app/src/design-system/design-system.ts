@@ -1,6 +1,6 @@
 import { NamedTheme, Theme, ThemeMode, applyTheme } from './theme/apply-theme.ts';
 import { LitElement } from 'lit';
-import {DesignToken} from "./design-token.ts";
+import {Button} from "../components/button.ts";
 
 export interface DesignSystemConfig {
     readonly assetsUrl: string;
@@ -20,15 +20,28 @@ export const defaultDesignSystemConfig: DesignSystemConfig = {
     htmlFontSize: 16,
 };
 
+export function registerComponents(config: DesignSystemConfig): void {
+    if (!customElements.get(`lit-button`)) {
+        customElements.define(`lit-button`, Button);
+    }
+
+}
+
+let designSystemProvided = false;
+
 export function provideNovaDesignSystem(c?: Partial<DesignSystemConfig>): void {
+    if (designSystemProvided) return;
+
     const config: DesignSystemConfig = {
         ...defaultDesignSystemConfig,
         ...c,
     };
 
-    // Apply the selected theme and mode
     applyTheme(config.theme, config.themeMode, config.htmlFontSize);
     // DesignToken.registerDefaultStyleTarget(
     //     config.root instanceof Document ? config.root : config.root.style
     // );
+    registerComponents(config);
+
+    designSystemProvided = true;
 }

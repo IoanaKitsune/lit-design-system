@@ -1,4 +1,5 @@
 import {NamedTheme, Theme} from "./apply-theme.ts";
+import {colorRange, ColorRange} from "./color-range.ts";
 import {ColorPalette} from "./color-palette.ts";
 import novaTheme from "./themes/nova.ts";
 import royalPunkTheme from "./themes/royal-punk.ts";
@@ -26,9 +27,26 @@ export function normalizeTheme(theme?: Theme | NamedTheme): Theme {
     return theme ?? novaTheme;
 }
 
+function invertColorRange<T>(original: any): ColorRange<T> {
+    const result: any = {};
+    for (
+        let i = 0, ii = colorRange.length - 1;
+        i < colorRange.length;
+        i++, ii--
+    ) {
+        result[colorRange[i]] = original[colorRange[ii]];
+    }
+    return result;
+}
+
 export function invertColorPalette<T>(colorPalette: ColorPalette<T>) {
-    const invertedColorPalette: any = JSON.parse(JSON.stringify(colorPalette));
+    const invertedColorPalette: any = {};
+    for (const [key, value] of Object.entries(colorPalette)) {
+        if (key === 'black' || key === 'white' || key === 'overlay') continue;
+        invertedColorPalette[key] = invertColorRange(value);
+    }
     invertedColorPalette.black = colorPalette.white;
     invertedColorPalette.white = colorPalette.black;
+    invertedColorPalette.overlay = colorPalette.overlay;
     return invertedColorPalette;
 }

@@ -4,9 +4,11 @@ export interface PropertyTarget {
 
 export class StyleElementPropertyTarget implements PropertyTarget {
     private styleElement: HTMLStyleElement;
+    private rootRule: CSSStyleRule | null = null;
 
     constructor(element?: HTMLStyleElement) {
         this.styleElement = element || this.createStyleElement();
+        this.initializeRootRule();
     }
 
     private createStyleElement(): HTMLStyleElement {
@@ -15,8 +17,17 @@ export class StyleElementPropertyTarget implements PropertyTarget {
         return style;
     }
 
+    private initializeRootRule(): void {
+        const sheet = this.styleElement.sheet!;
+        const index = sheet.insertRule(':root {}', sheet.cssRules.length);
+        this.rootRule = sheet.cssRules[index] as CSSStyleRule;
+    }
+
     public setProperty(varName: string, value: string): void {
-        this.styleElement.sheet?.insertRule(`:root { ${varName}: ${value}; }`);
+        if (!this.rootRule) {
+            this.initializeRootRule();
+        }
+        this.rootRule!.style.setProperty(varName, value);
     }
 }
 

@@ -41,6 +41,7 @@ export function applyTheme(
     mode: ThemeMode,
     htmlFontSize: number = 16
 ): void {
+    console.log("apply theme")
     const normalizedTheme = normalizeTheme(theme);  // Normalize the theme if needed
 
     applyThemeColorPalette(designTokens.colors, normalizedTheme.color[mode]);

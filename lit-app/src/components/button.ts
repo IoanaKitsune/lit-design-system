@@ -16,15 +16,15 @@ export class Button extends LitElement {
       static get styles() {
         return css`
           .button {
-            background-color: ${unsafeCSS(designTokens.colors.success[50].value)};
-            color: ${unsafeCSS(designTokens.colors.primary[100].value)};
+            background-color: ${designTokens.colors.success[50].value};
+            color: ${designTokens.colors.primary[100].value};
             border: none;
             border-radius: 4px;
             cursor: pointer;
           }
 
           .button:hover {
-            background-color: ${unsafeCSS(designTokens.colors.warning[50].value)};
+            background-color: ${designTokens.colors.warning[50].value};
           }
     `;
       }

@@ -1,3 +1,5 @@
+import {CSSResult, unsafeCSS} from "lit";
+
 export interface PropertyTarget {
     setProperty(varName: string, value: string): void;
 }
@@ -59,8 +61,8 @@ export class DesignToken {
         this._value = _defaultValue;
     }
 
-    public get value(): string {
-        return this._value!;
+    public get value(): CSSResult {
+        return unsafeCSS(this._value!);
     }
 
     public setValue(value: string): void {
